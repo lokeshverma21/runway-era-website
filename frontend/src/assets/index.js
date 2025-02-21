@@ -14,7 +14,7 @@ import hero1 from './hero1.jpg';
 import hero2 from './hero2.jpg';
 import stripeLogo from './stripeLogo.png';
 import razorpayLogo from './razorpayLogo.png';
-import logo from './logo.png';
+// import logo from './logo.png';
 import logowhite from './logowhite.png';
 import logowhite2 from './logowhite2.png';
 import logo3 from './logo3.png'
@@ -39,7 +39,7 @@ export const assets = {
     hero2,
     stripeLogo,
     razorpayLogo,
-    logo,
+    // logo,
     logowhite,
     logowhite2,
     logo3,
