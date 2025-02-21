@@ -19,6 +19,8 @@ import logowhite from './logowhite.png';
 import logowhite2 from './logowhite2.png';
 import logo3 from './logo3.png'
 import logo4 from './logo4.png'
+import pimg from './p-img1.png'
+import pimg2 from './p-img2.png'
 
 
 
@@ -43,5 +45,7 @@ export const assets = {
     logowhite,
     logowhite2,
     logo3,
-    logo4
+    logo4,
+    pimg,
+    pimg2
 }
