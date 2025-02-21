@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateCartAsync, clearCart, fetchCartAsync, removeFromCartAsync } from "@/features/cart/cartSlice.js";
 import Title from "@/components/Title.jsx";
 import { assets } from "@/assets/index.js";
-import CartTotal from "@/components/cartTotal.jsx";
+import CartTotal from "@/components/CartTotal";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
