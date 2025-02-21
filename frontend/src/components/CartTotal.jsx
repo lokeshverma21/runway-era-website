@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Title from './Title'
+import Title from './Title.jsx'
 
 function CartTotal() {
     const cartAmount = useSelector((state)=> state.cart.totalPrice);

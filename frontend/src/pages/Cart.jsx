@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateCartAsync, clearCart, fetchCartAsync, removeFromCartAsync } from "@/features/cart/cartSlice.js";
-import Title from "@/components/Title";
-import { assets } from "@/assets";
-import CartTotal from "@/components/cartTotal";
+import Title from "@/components/Title.jsx";
+import { assets } from "@/assets/index.js";
+import CartTotal from "@/components/cartTotal.jsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
