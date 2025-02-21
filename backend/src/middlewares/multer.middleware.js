@@ -2,7 +2,8 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 
-const tempDir = path.join(process.cwd(), "public", "temp");
+// Use AWS Lambda's writable temp directory
+const tempDir = "/tmp/uploads";
 
 // Ensure directory exists
 if (!fs.existsSync(tempDir)) {
@@ -20,30 +21,3 @@ const storage = multer.diskStorage({
 });
 
 export const upload = multer({ storage });
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import multer from "multer";
-
-// const storage = multer.diskStorage({
-//     destination: function(req,res,cb){
-//         cb(null, "./public/temp")
-//     },
-
-//     filename: function (req, file, cb) {
-//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-//         cb(null, file.fieldname + '-' + uniqueSuffix + "-" + file.originalname);
-//     }
-// })
-
-// export const upload = multer({ storage })
