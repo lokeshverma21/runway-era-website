@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // API Base URL
-const API_BASE_URL = "http://localhost:1000/api/v1/cart"; // Change this to your backend URL
+const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/cart`; // Change this to your backend URL
 
 // Helper function to get token from Redux state
 const getAuthToken = (getState) => getState().auth.token;

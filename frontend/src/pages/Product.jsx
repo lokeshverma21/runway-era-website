@@ -57,7 +57,7 @@ function Product() {
       if (response.meta.requestStatus === "fulfilled") {
           toast.success("Item added to cart!");
       } else {
-          toast.error(response.payload);
+          toast.error("Please login"||response.payload);
       }
     });
 
