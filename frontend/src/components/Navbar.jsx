@@ -53,10 +53,10 @@ function Navbar() {
 
   return (
     <div className='flex items-center justify-between py-4 font-medium'>
-      <div>
+      <Link to={'/'}>
         {/* <h1>LOGO.</h1> */}
         <img src={assets.logo4} alt="Ranway Era" className='w-30'/>
-      </div>
+      </Link>
 
       <div className="hidden md:flex gap-5 text-sm">
         <NavLink to="/" className={({ isActive }) => `flex flex-col items-center gap-1`}>
