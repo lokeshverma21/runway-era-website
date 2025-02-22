@@ -16,7 +16,7 @@ export const fetchProducts = createAsyncThunk(
     try {
       const response = await axios.get(`${backendUrl}/products/list`);
       // console.log(response.data.data)
-      return response.data.data; // Assuming response.data contains the products array
+      return (response.data.data).reverse(); // Assuming response.data contains the products array
     } catch (error) {
       return rejectWithValue(
         error.response?.data?.message || "Failed to fetch products"
