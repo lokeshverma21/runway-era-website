@@ -25,6 +25,21 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+// Fetch a single product by ID
+export const fetchProductById = createAsyncThunk(
+  "products/fetchProductById",
+  async (productId, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${backendUrl}/products/single/`, {productId});
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch product"
+      );
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "products",
   initialState,
@@ -53,6 +68,25 @@ const productSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // Handle fetching a single product
+      .addCase(fetchProductById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.loading = false;
+        const existingProduct = state.products.find(
+          (p) => p._id === action.payload._id
+        );
+        if (!existingProduct) {
+          state.products.push(action.payload); // Add product only if not already in store
+        }
+      })
+      .addCase(fetchProductById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

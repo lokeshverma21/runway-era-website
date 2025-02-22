@@ -25,10 +25,10 @@ function RelatedProduct({category, subCategory}) {
             <Title text1={'Related'} text2={'products'}/>
         </div>
 
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
             {
                 related.map((item,index) => (
-                    <ProductCard key={index} id={item._id} productName={item.price} price={item.price} productImage={item.image[0]}/>
+                    <ProductCard key={index} id={item._id} productName={item.name} price={item.price} productImage={item.image[0]}/>
                 ))
             }
         </div>

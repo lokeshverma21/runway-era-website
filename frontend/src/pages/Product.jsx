@@ -1,6 +1,8 @@
 import { assets } from '@/assets';
+import Loader from '@/components/Loader';
 import RelatedProduct from '@/components/RelatedProduct';
 import { addToCartAsync } from '@/features/cart/cartSlice';
+import { fetchProductById } from '@/features/collections/collectionSlice';
 // import { addItemToCart } from '@/features/cart/cartSlice.js';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,8 +14,10 @@ function Product() {
   const dispatch = useDispatch();
   const {productId} = useParams();
   // console.log(productId)
-
-  const [product, setProduct] = useState(false)
+  
+  const { products, loading, error } = useSelector((state) => state.products || { products: [] });
+  const product = products.find((item) => item._id === productId);
+  // const [product, setProduct] = useState(false)
   const [mainImage, setMainImage] = useState('');
   const [productSize, setProductSize] = useState('')
 
@@ -21,11 +25,10 @@ function Product() {
 
   // const { products, loading, error } = useSelector((state) => state.products || { products: [] });
   // const { userId } = useSelector((state) => state.auth.token); // Get logged-in user ID from Redux
-  const { products, loading, error } = useSelector((state) => state.products || { products: [] });
 
   const fetchProducctData = async() => {
     // console.log('first')
-    // console.log(products)
+    console.log(product.image[0])
     products.map((item)=>{
       // console.log(item._id)
       if (item._id == productId) {
@@ -42,6 +45,19 @@ function Product() {
     // console.log(products)
     fetchProducctData();
   },[]);
+
+
+  useEffect(() => {
+    if (!product) {
+      dispatch(fetchProductById(productId)); // Fetch from API if missing
+    }
+  }, [dispatch, productId, product]);
+  
+  useEffect(() => {
+    if (product && product.image) {
+      setMainImage(product.image[0]); // Set first image as main image
+    }
+  }, [product]); // Runs when 'product' updates
 
 
   const handleAddTocart = () => {
@@ -63,6 +79,12 @@ function Product() {
 
     // toast.success('Item added to cart')
   }
+
+
+  if (loading) return <div className="text-center h-[30vh] flex items-center justify-center"><Loader/></div>;
+  if (error) return <div className="text-center text-red-500">{error}</div>;
+  if (!product) return <div className="text-center">Product not found!</div>;
+
 
   return product ? (
     <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
