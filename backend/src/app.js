@@ -5,9 +5,18 @@ import { notFound, errorHandler } from "./middlewares/error.middleware.js"; // I
 
 const app = express();
 
+// Read allowed origins from environment variables and convert them into an array
+const allowedOrigins = process.env.CORS_ORIGIN?.split(",") || [];
+
 app.use(
     cors({
-        origin: process.env.CORS_ORIGIN,
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
         credentials: true,
     })
 );
