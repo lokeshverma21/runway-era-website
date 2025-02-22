@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { assets } from "@/assets";
 import ProductCard from "@/components/ProductCard";
 import Title from "@/components/Title";
+import Loader from "@/components/Loader";
 
 function Collection() {
   const { products, loading, error } = useSelector((state) => state.products || { products: [] });
@@ -138,7 +139,9 @@ function Collection() {
           {filterProducts.length > 0 ? (
             filterProducts.map((item) => <ProductCard key={item.id} {...item} id={item._id} price={item.price} productImage={item.image[0]} productName={item.name}/>)
           ) : (
-            <p>Loading...</p>
+            <div className="flex items-center justify-center w-[50vw] h-[50vh]">
+              <Loader/>
+            </div>
           )}
         </div>
       </div>

@@ -36,10 +36,10 @@ function LatestCollection() {
           <LoadingSkeleton />
         ) : latestCollection.length > 0 ? (
           latestCollection.map((item, index) => (
-            <ProductCard key={index} id={item.id} productImage={item.image[0]} productName={item.name} price={item.price} />
+            <ProductCard key={index} id={item._id} productImage={item.image[0]} productName={item.name} price={item.price} />
           ))
         ) : (
-          <p>No products found.</p>
+          <p>No products available.</p>
         )}
       </div>
     </div>

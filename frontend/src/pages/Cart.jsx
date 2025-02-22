@@ -5,6 +5,7 @@ import { assets } from "@/assets/index.js";
 import CartTotal from "@/components/CartTotal";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Loader from "@/components/Loader";
 
 const Cart = () => {
     const { cartItems, totalQuantity, totalPrice, loading } = useSelector((state) => state.cart);
@@ -46,7 +47,7 @@ const Cart = () => {
 
 
     if (!cartItems || cartItems.length === 0) {
-      return <div>No items in the cart</div>; // or a loading indicator
+      return <div className="flex items-center justify-center h-[20vh]">No items in the cart</div>; // or a loading indicator
   }
   
 
@@ -57,7 +58,9 @@ return (
             </div>
 
             {loading ? (
-                <p>Loading cart...</p>
+                <div className="flex items-center justify-center h-[30vh]">
+                    <Loader/>
+                </div>
             ) : cartItems.length > 0 ? (
                 <div>
                     {cartItems.map((item) => (
