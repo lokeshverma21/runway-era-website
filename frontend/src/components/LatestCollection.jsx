@@ -27,7 +27,7 @@ function LatestCollection() {
       <div className="text-center py-8 text-3xl">
         <Title text1={"Latest"} text2={"collections"} />
         <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab magnam accusamus exercitationem voluptas eligendi.
+          Discover our newest arrivals, featuring trendy and stylish pieces designed for every occasion. Stay ahead of the fashion game with fresh styles and premium quality.
         </p>
       </div>
 

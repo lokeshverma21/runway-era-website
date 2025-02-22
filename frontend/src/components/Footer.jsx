@@ -11,7 +11,7 @@ function Footer() {
           {/* <img src="" alt="" /> */}
           {/* <h1 className='font-bold text-2xl'>RunwayEra.</h1> */}
           <img src={assets.logowhite} alt="Runawayera" className='md:w-36 items-center w-full'/>
-          <p className='text-base text-gray-600 w-full md:w-2/3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, assumenda. Adipisci accusantium unde nihil pariatur! Molestias ut repudiandae delectus fugiat.</p>
+          <p className='text-base text-gray-600 w-full md:w-2/3'>Discover the latest trends, timeless essentials, and effortless fashion, all in one place. Shop with confidence and elevate your wardrobe with high-quality pieces curated just for you.</p>
         </div>
 
         <div>

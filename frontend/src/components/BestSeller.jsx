@@ -21,7 +21,7 @@ function BestSeller() {
         <div className='text-center text-3xl py-8'>
             <Title text1={'best'} text2={'sellers'}/>
             <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit, inventore.
+                Explore our most-loved pieces, handpicked by our customers. These top-selling styles combine comfort, elegance, and timeless appeal, making them must-haves in your wardrobe.
         </p>
         </div>
 
