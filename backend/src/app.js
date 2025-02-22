@@ -5,21 +5,23 @@ import { notFound, errorHandler } from "./middlewares/error.middleware.js"; // I
 
 const app = express();
 
-// Read allowed origins from environment variables and convert them into an array
-const allowedOrigins = process.env.CORS_ORIGIN?.split(",") || [];
+const allowedOrigins = process.env.CORS_ORIGIN?.split(",").map(origin => origin.trim()) || [];
 
 app.use(
     cors({
         origin: function (origin, callback) {
+            console.log("Request Origin:", origin); // Debugging
+
             if (!origin || allowedOrigins.includes(origin)) {
                 callback(null, true);
             } else {
-                callback(new Error("Not allowed by CORS"));
+                callback(new Error(`Not allowed by CORS: ${origin}`));
             }
         },
         credentials: true,
     })
 );
+
 
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
