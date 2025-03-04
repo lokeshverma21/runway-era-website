@@ -29,7 +29,7 @@ function Footer() {
             <p className='uppercase font-medium text-xl mb-5'>Get i touch</p>
             <ul className='flex flex-col text-gray-600 gap-1'>
               <li>+91 - 00000-00000</li>
-              <li>lokesh21980@gmail.com</li>
+              <li>lokeshverma.tech@gmail.com</li>
             </ul>
         </div>
       </div>
