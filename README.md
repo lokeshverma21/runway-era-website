@@ -56,7 +56,7 @@
 ### 📥 Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/runway-era.git
+git clone https://github.com/lokeshverma21/runway-era-website.git
 cd runway-era
 ```
 ### 🛠️ Install and Run Backend
