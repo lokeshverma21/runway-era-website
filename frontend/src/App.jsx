@@ -2,7 +2,7 @@ import {Outlet} from "react-router-dom"
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer'
 import SearchBar from "./components/SearchBar.jsx"
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "./features/collections/collectionSlice.js";
