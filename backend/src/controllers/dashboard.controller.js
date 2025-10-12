@@ -91,7 +91,7 @@ const dashboard = asyncHandler(async (req, res) => {
       name: p.product.name,
       category: p.product.category,
       sales: p.totalSales,
-      revenue: `₹${(p.totalRevenue / topProductsAgg.length).toFixed(0)}`,
+      revenue: `$${(p.totalRevenue / topProductsAgg.length).toFixed(0)}`,
       trend: trends[Math.floor(Math.random() * trends.length)],
     }));
 
@@ -104,17 +104,17 @@ const dashboard = asyncHandler(async (req, res) => {
       .lean();
 
     const recentOrders = recentOrdersAgg.map((order) => ({
-      id: order._id.toString().slice(-6).toUpperCase(), // short readable ID
+      id: `#ODR-${order._id.toString().slice(-6).toUpperCase()}`, // short readable ID
       customer: order.userId?.name || "Guest User",
       email: order.userId?.email || "N/A",
       products: order.items.map((i) => ({
         name: i.productId?.name || "Unknown",
         category: i.productId?.category || "N/A",
         quantity: i.quantity,
-        price: i.productId?.price ? `₹${i.productId.price}` : "₹0",
+        price: i.productId?.price ? `$${i.productId.price}` : "$0",
       })),
       totalItems: order.items.reduce((acc, i) => acc + i.quantity, 0),
-      amount: `₹${order.amount}`,
+      amount: `$${order.amount}`,
       date: new Date(order.createdAt).toLocaleDateString("en-IN"),
       paymentStatus: order.payment?.status ? "Paid" : "Pending",
       status: order.status || "Order Placed",
