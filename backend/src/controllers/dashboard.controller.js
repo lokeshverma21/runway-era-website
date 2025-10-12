@@ -74,7 +74,7 @@ const dashboard = asyncHandler(async (req, res) => {
         },
       },
       { $sort: { totalSales: -1 } },
-      { $limit: 5 },
+      { $limit: 7 },
       {
         $lookup: {
           from: "products",
