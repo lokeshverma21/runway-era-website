@@ -98,7 +98,7 @@ const dashboard = asyncHandler(async (req, res) => {
     // 5️⃣ Recent Orders (latest 5)
     // 5️⃣ Recent Orders (latest 5)
     const recentOrdersAgg = await Order.find()
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: 1 })
       .limit(5)
       .populate("userId", "name")
       .lean();
