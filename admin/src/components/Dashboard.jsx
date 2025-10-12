@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react';
 import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Package, Users, ShoppingBag, DollarSign, Sparkles, ArrowUp, ArrowDown, Minus, Loader2 } from 'lucide-react';
 import axios from 'axios';
-import { currency } from '../App';
+import { backendUrl, currency } from '../App';
+import { useOutletContext } from 'react-router-dom';
 
 const Dashboard = () => {
+  const { token } = useOutletContext();
 //   const [selectedPeriod, setSelectedPeriod] = useState('month');
   const [hoveredCard, setHoveredCard] = useState(null);
   const [topProducts, setTopProducts] = useState([]);
@@ -90,10 +92,7 @@ const Dashboard = () => {
       setLoading(true);
       setError(null);
       
-      // Get token from localStorage or however you store it
-      const token = localStorage.getItem('token') || '';
-      
-      const response = await axios.get('http://localhost:1000/api/v1/dashboard', {
+      const response = await axios.get(`${backendUrl}/dashboard`, {
         headers: { token }
       });
 
