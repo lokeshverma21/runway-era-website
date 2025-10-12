@@ -96,19 +96,28 @@ const dashboard = asyncHandler(async (req, res) => {
     }));
 
     // 5️⃣ Recent Orders (latest 5)
-    // 5️⃣ Recent Orders (latest 5)
     const recentOrdersAgg = await Order.find()
-      .sort({ createdAt: 1 })
+      .sort({ createdAt: -1 }) // DESCENDING — latest first
       .limit(5)
-      .populate("userId", "name")
+      .populate("userId", "name email") // fetch user info
+      .populate("items.productId", "name category price") // fetch product details
       .lean();
 
-    const recentOrders = recentOrdersAgg.map((o) => ({
-      id: generateOrderNumber(),
-      customer: o.userId?.name || "Guest User",
-      date: o.createdAt.toISOString().split("T")[0],
-      amount: `₹${o.amount}`,
-      status: o.status || "Order Placed",
+    const recentOrders = recentOrdersAgg.map((order) => ({
+      id: order._id.toString().slice(-6).toUpperCase(), // short readable ID
+      customer: order.userId?.name || "Guest User",
+      email: order.userId?.email || "N/A",
+      products: order.items.map((i) => ({
+        name: i.productId?.name || "Unknown",
+        category: i.productId?.category || "N/A",
+        quantity: i.quantity,
+        price: i.productId?.price ? `₹${i.productId.price}` : "₹0",
+      })),
+      totalItems: order.items.reduce((acc, i) => acc + i.quantity, 0),
+      amount: `₹${order.amount}`,
+      date: new Date(order.createdAt).toLocaleDateString("en-IN"),
+      paymentStatus: order.payment?.status ? "Paid" : "Pending",
+      status: order.status || "Order Placed",
     }));
 
     // ✅ Send Final Response
